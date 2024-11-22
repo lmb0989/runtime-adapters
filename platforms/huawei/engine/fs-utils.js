@@ -250,7 +250,7 @@ var fsUtils = {
     },
 
     loadSubpackage(name, onProgress, onComplete) {
-        var task = hbs.loadSubpackage({
+        var task = qg.loadSubpackage({
             subpackage: name,
             success: function () {
                 onComplete && onComplete();
@@ -260,7 +260,7 @@ var fsUtils = {
                 onComplete && onComplete(new Error(`Failed to load subpackage ${name}: ${res.errMsg}`));
             }
         });
-        onProgress && task.onProgressUpdate(onProgress);
+        onProgress && (task.onprogress = onProgress);
         return task;
     },
     unzip(zipFilePath, targetPath, onComplete) {
